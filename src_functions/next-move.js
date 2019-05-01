@@ -1,4 +1,4 @@
-import trainedNet from './neuralNet/trained-net';
+const trainedNet = require('./neuralNet/trained-net');
 
 const handler = (event, context, callback) => {
     const { body, queryStringParameters } = event;
@@ -10,6 +10,7 @@ const handler = (event, context, callback) => {
         parsedBody = {};
     }
 
+    // eslint-disable-next-line no-console
     console.log('Body: ', body, ' QueryStringParameters: ', queryStringParameters);
 
     const { board } = parsedBody;
@@ -34,10 +35,12 @@ const handler = (event, context, callback) => {
 
     const emptySlots = combinedBoard.filter(({ isEmpty }) => isEmpty).sort(el => el.weight);
 
+    // eslint-disable-next-line no-console
     console.log(combinedBoard, emptySlots);
     const dominantChoise = emptySlots && emptySlots.length && emptySlots[0];
     const firstZeroEl = board && board.indexOf(0);
     const nextMove = dominantChoise.index.toString();
+    // eslint-disable-next-line no-console
     console.log(`Current state is: ${board}.\nFirst zero element is on position: ${firstZeroEl}.\nNext move is: ${nextMove}.`);
 
     const response = {

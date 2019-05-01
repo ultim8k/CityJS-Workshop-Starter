@@ -22,7 +22,7 @@ const betterData = someData.map(dataset => {
 
 net.train(betterData);
 
-const fileContents = `export default ${net.toFunction().toString()};`;
+const fileContents = `module.exports=${net.toFunction().toString()};`;
 
 writeFileSync(fileName, fileContents);
 // eslint-disable-next-line no-console
